@@ -1,5 +1,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
+
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if ENV["BF_ACCEPT"] == 'true'
 
@@ -31,6 +33,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vbguest.auto_update = false
     end
 
+    config.vm.provision "conversion" , type: "shell" do |cvn|
+        cvn.path = "./convertDosToUnix.sh"
+    end
+
     config.vm.provision "common" , type: "shell" do |c|
         c.path = "./scripts/vagrant-provision-common.sh"
     end
@@ -47,6 +53,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         s.path = "./scripts/vagrant-provision-svr.sh"
         ARGS = ENV["BES_VERSION"]
         s.args = ARGS
+      end
+    end
+
+    # run the python scripts
+    config.vm.provision "pythonscripts", type: "shell" do |ps|
+      if ENV["PYTHON_SCRIPTS"]
+        ps.path = "./scripts/auto-enable-external-sites.sh"
+        PS_ARGS = ENV["PYTHON_SCRIPTS"]
+        ps.args = PS_ARGS
       end
     end
 

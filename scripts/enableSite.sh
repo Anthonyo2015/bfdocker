@@ -55,7 +55,18 @@ log()
 ##
 executeEnablePostRequest()
 {
-   log "About to execute: curl  --tlsv1.2 -s --header Authorization: Basic "${IEMUSER}"' -w "%{http_code}" --insecure  -X POST --data-binary @$XMLFILE https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/sites"   
+   log "----------------------------------------------------"
+   log "waiting for rest api to be set up"
+   log "waiting for return code 200 for /pi/help"
+
+   httpReturnCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" -w "%{http_code}" --insecure -X GET https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help)" (https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help%29%27) 
+   while [[ "$httpReturnCode" -ne "200" ]]; do
+      log "performing get request for /pi/help"
+      $httpReturnCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" -w "%{http_code}" --insecure -X GET https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help)" (https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help%29%27) 
+      sleep 30
+   done 
+   
+   log "About to execute: curl  --tlsv1.2 -s --header Authorization: Basic <user:password>' -w "%{http_code}" --insecure  -X POST --data-binary @$XMLFILE https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/sites"   
    returncode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" -w "%{http_code}" --insecure -X POST --data-binary @${XMLFILE} https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/sites -o /dev/null)"
 
    if [[ "$returncode" -ne "200" ]]; then
@@ -99,7 +110,7 @@ handleInputParameters()
 
          -iemuser)
             IEMUSER1=$1;
-            IEMUSER=$(echo -ne "\$IEMUSER1" | base64); export IEMUSER
+            IEMUSER=$(echo -ne $IEMUSER1 | base64); export IEMUSER
             echo $IEMUSER;
             shift
          ;;
