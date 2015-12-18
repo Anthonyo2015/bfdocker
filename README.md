@@ -55,6 +55,11 @@ create (a set includes one centOS6, one centOS7 and one Ubuntu client), with the
 values still set to default, though you may specify the remaining values also if you wish,
 for example:
 	./launchInstall.sh 5 		Will create 5 sets of clients with default settings
-	./launchInstall.sh 5 9.X.X.X true true true		Will create 5 sets of clients with a specified bigfix version
+	./launchInstall.sh 5 9.X.X.X true true true		Will create 5 sets of clients with a specified bigfix version on evaluation licence
+	./launchInstall.sh 5 9.X.X.X true true true	auth	Will create 5 sets of clients with a specified bigfix version on production licence using .BESLicenceAuthorization file
+	./launchInstall.sh 5 9.X.X.X true true true	auth up --provision 	For provisioning changes on boot-up
+	./launchInstall.sh 5 9.X.X.X true true true	auth provision 		For provisiong changes while VM is still running
+	# STILL TO BE DEVELOPED
+	./launchInstall.sh 5 9.X.X.X true true true	prod	Will create 5 sets of clients with a specified bigfix version on evaluation licence using .pvk and .cert files
 ##/
 ********************************************************************************
