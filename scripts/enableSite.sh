@@ -62,6 +62,7 @@ executeEnablePostRequest()
    while [[ "$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)" -ne "200" ]]; do
      # log "performing get request for /api/help"
       #$httpReturnCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)" 
+      printf "Request to: https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help\n"
       printf "Sleeping for 30 seconds until next request\n"
       sleep 30
    done
