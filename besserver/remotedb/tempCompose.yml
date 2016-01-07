@@ -9,8 +9,7 @@ remdb:
   ports:
     - "50000:50000"
 
-#BigFix server
-besserver:
+#BigFix serverbesserver:
   build: .
   command: /bes-start.sh
   container_name: eval.mybigfix.com
