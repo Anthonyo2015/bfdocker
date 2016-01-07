@@ -43,6 +43,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # default to evaluation edition
       if ENV["BES_CONFIG"] == 'remdb'
         s.path = "./scripts/vagrant-provision-remdb.sh"
+        ARGS = ENV["BES_VERSION"], ENV["LICENCE_TYPE"]
+        s.args = ARGS
       else
         s.path = "./scripts/vagrant-provision-svr.sh"
         ARGS = ENV["BES_VERSION"]

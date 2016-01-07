@@ -9,6 +9,7 @@ fi
 # install bes if it's not there
 if [[ ! -f /etc/init.d/besserver ]]
 then
+  printf "Attempting BESServer install\n"
   BES_INSTALL_FILE=$BES_INSTALL_FILE bash /bes-install.sh
 else
   # fire up bes
@@ -17,6 +18,7 @@ else
   service besgatherdb start
   service beswebreports start
   service besclient start
+  /setupPluginServiceAndRESTAPI.sh
 fi
 
 # keep the container running
