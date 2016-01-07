@@ -59,9 +59,13 @@ executeEnablePostRequest()
    log "waiting for rest api to be set up"
    log "waiting for return code 200 for /api/help"
    #httpReturnCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)"
-   while [[ "$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)" -ne "200" ]]; do
-     # log "performing get request for /api/help"
+   statusCode="NONE"
+   
+   while [[ "$statusCode" -ne "200" ]]; do
       #$httpReturnCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)" 
+      statusCode="$(curl  --tlsv1.2 -s --header "Authorization:Basic ${IEMUSER}" --write-out "%{http_code}" --insecure https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help -o /dev/null)"
+      printf "Request to: https://${SERVERDNSNAME}:${IEMSERVERPORT}/api/help\n"
+      printf "Status Code Result: $statusCode\n"
       printf "Sleeping for 30 seconds until next request\n"
       sleep 30
    done

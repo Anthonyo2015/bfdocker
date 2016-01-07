@@ -14,7 +14,7 @@ cd $pythonDir
 # install requests module
 python ./setup.py install
 wait
-# Change bac kt obesserver directory
+# Change back to besserver directory
 cd $(pwd)/../scripts
 # Run python script to wait until all listed sites have gathered
 python ./checkSiteGathered.py "127.0.0.1" EvaluationUser:BigFix1t4Me "Bigfix4QRadar Test" 180 200 120 60 "NONE" "52311"
