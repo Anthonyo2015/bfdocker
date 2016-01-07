@@ -79,3 +79,5 @@ for example:
 	./launchInstall.sh 5 9.X.X.X true true true	license provision 		For provisiong changes while VM is still running
 ##
 ***************************************************************************************************
+Developer Note: Need to add functionality to copy .pvk and .crt license files from server to bfdocker project
+***************************************************************************************************
