@@ -63,3 +63,4 @@ for example:
 	./launchInstall.sh 5 9.X.X.X true true true	prod	Will create 5 sets of clients with a specified bigfix version on evaluation licence using .pvk and .cert files
 ##/
 ********************************************************************************
+line 66
