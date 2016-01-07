@@ -11,7 +11,7 @@ fi
 # Print working directory
 printf "Checking directory: $(pwd)\n"
 # Find all .sh or .txt files and store in tempConversionFiles.txt
-find . -path ./besserver/cli_tool -prune -type f -name "*.sh" -o -name "*.txt" -o -name "*.rsp" -o -name "*.yml" > tempConversionFiles.txt
+find . -type f -name "*.sh" -o -name "*.txt" -name "*.rsp" > tempConversionFiles.txt
 # Output given CHECK_FILE
 printf "Reading from file: $CHECK_FILE\n"
 # Check if file exists
