@@ -9,7 +9,7 @@ remdb:
   ports:
     - "50000:50000"
 
-# BigFix server
+#BigFix server
 besserver:
   build: .
   command: /bes-start.sh
