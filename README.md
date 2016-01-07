@@ -28,6 +28,7 @@ where arguments are as follows:
         ./launchInstall.sh 3 9.2.6.94 true true true license up --provision
             or if the machine is still running
         ./launchInstall.sh 3 9.2.6.94 true true true license provision
+      
 ***************************************************************************************************
 Note: for new licence versions, you must have either a license.BESLicenseAuthorization file or a license.pvk and license.crt file 
 stored in the directory bfdocker/besserver/remotedb/license/ before deployment. If all three files are present the deployment will
@@ -38,7 +39,7 @@ match in order to work correctly.
 ***************************************************************************************************
 
 --------------------
-to connect console:
+To connect console:
 --------------------
 hostname: 127.0.0.1
 port: 2222
@@ -46,7 +47,12 @@ username: EvaluationUser
 pass: BigFix1t4Me
 
 --------------------
-to destroy vagrant vm:
+To shutdown but maintain machine
+--------------------
+vagrant halt
+
+--------------------
+To destroy vagrant vm:
 --------------------
 VAGRANT_DETECTED_OS=cygwin vagrant destroy
 
