@@ -9,4 +9,6 @@ besserver/remotedb/license/*.BESLicenseAuthorization
 
 besserver/commmon/ibm-yum.sh
 
+IEMExternalSiteMasthead
+
 *.BESLicenseAuthorization
